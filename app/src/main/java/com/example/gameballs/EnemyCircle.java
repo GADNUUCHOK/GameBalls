@@ -39,7 +39,7 @@ public class EnemyCircle extends SimpleCircle {
         }
     }
 
-    private boolean isSmallerThan(SimpleCircle circle) {
+    public boolean isSmallerThan(SimpleCircle circle) {
         if (radius < circle.radius) {
             return true;
         }
@@ -49,5 +49,15 @@ public class EnemyCircle extends SimpleCircle {
     public void moveOnStep() {
         x += dx;
         y += dy;
+        checkBounds();
+    }
+
+    private void checkBounds() {
+        if (x > GameManager.getWidth() || x < 0) {
+            dx = -dx;
+        }
+        if (y > GameManager.getHeight() || y < 0) {
+            dy = -dy;
+        }
     }
 }
